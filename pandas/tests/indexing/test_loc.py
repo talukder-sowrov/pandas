@@ -938,6 +938,16 @@ class TestLocBaseIndependent:
             df.loc[index] = box
         tm.assert_frame_equal(df, expected)
 
+    def test_loc_setitem_numpy_asarray(self):
+        
+        df = DataFrame()
+        rhs = np.asarray([0])
+
+        df.loc[0,0] = rhs
+        
+        expected = DataFrame([0], dtype=np.float64)
+        tm.assert_frame_equal(df, expected)
+
     def test_loc_coercion(self):
 
         # GH#12411
