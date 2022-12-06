@@ -1739,7 +1739,9 @@ class _iLocIndexer(_LocationIndexer):
                             if not isinstance(value, ABCSeries):
                                 # if not Series (in which case we need to align),
                                 #  we can short-circuit
-                                empty_value[indexer[0]] = arr
+                                empty_value[
+                                    key if isinstance(indexer[0], dict) else indexer[0]
+                                ] = arr
                                 self.obj[key] = empty_value
                                 return
 
